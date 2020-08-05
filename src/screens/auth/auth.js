@@ -17,8 +17,10 @@ const Auth = () => {
 
   const { navigate } = useNavigation();
 
+  // Comentário
+
   return (
-    <>
+    <> 
     <StatusBar backgroundColor="#202125" barStyle="light-content" />
     <ImageBackground source={backgroundImage} style={styles.background}>
       <Text style={styles.title}>SUPPLIER CONTROL</Text>
