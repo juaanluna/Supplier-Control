@@ -18,6 +18,7 @@ const Auth = () => {
   const { navigate } = useNavigation();
 
   // Comentário
+  // Comentário II
 
   return (
     <> 
