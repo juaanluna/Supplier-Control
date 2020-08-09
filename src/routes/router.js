@@ -3,6 +3,7 @@ import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
 import Auth from "../screens/auth/auth";
 import MaterialList from "../screens/material/materialList";
 import SupplierList from "../screens/supplier/supplierList";
+import CadastrarItem from "../screens/cadastrarItem/cadastrarItem";
 import DrawerNavigation from "./drawerNavigation";
 
 const Stack = createStackNavigator();
@@ -27,6 +28,12 @@ const Routes = () => {
         name="Home"
         component={DrawerNavigation}
         options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="CadastrarItem"
+        component={CadastrarItem}
+        options={{ title: "Cadastrar Itens" }}
       />
 
       <Stack.Screen
