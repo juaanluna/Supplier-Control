@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "react-native";
 import Modal from "../../components/modal";
 
+
 const MaterialList = () => {
   const itens = [
     { nome: "Lapis", numFornec: 10 },
@@ -53,16 +54,28 @@ const MaterialList = () => {
       <Modal 
       isVisible={openModal} 
       textHeader='NOME DO PRODUTO'
-      buttonTitle='Ver fornecedores'
-      onCancel={() => setOpenModal(false)}>
+      >
+        
         <Text>Informações: AAAAAAAAAAAA</Text>
         <Text>Informações: AAAAAAAAAAAA</Text>
         <Text>Informações: AAAAAAAAAAAA</Text>
+        <TouchableOpacity 
+        style={styles.button}
+        onPress={
+          () => {
+            setOpenModal(false)
+            navigate("SupplierList")
+          }
+        }
+        >
+          <Text style={styles.buttonTitle}>Ver fornecedores</Text>
+        </TouchableOpacity>
       </Modal>
 
       <View style={styles.header}>
         <Text style={styles.headerSubtitle}>Nome</Text>
         <Text style={styles.headerSubtitle}>Qtd Fornecedor</Text>
+        
       </View>
 
       <ScrollView>
@@ -74,6 +87,7 @@ const MaterialList = () => {
             >
               <Text style={styles.listTitle}>{item["nome"]}</Text>
               <Text style={styles.listTitle}>{item["numFornec"]}</Text>
+           
             </TouchableOpacity>
           );
         })}
@@ -107,6 +121,16 @@ const styles = StyleSheet.create({
     borderColor: "#AAA",
     justifyContent: "space-between",
     flexDirection: "row",
+  },
+  buttonTitle: {
+    margin: 20,
+    marginRight: 30,
+    color: "#B20",
+    fontSize: 20,
+  },
+  button: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
 
