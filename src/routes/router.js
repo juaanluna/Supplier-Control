@@ -4,6 +4,7 @@ import Auth from "../screens/auth/auth";
 import MaterialList from "../screens/material/materialList";
 import SupplierList from "../screens/supplier/supplierList";
 import DrawerNavigation from "./drawerNavigation";
+import FornecedorForm from "../screens/fornecedor/fornecedorForm";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,12 @@ const Routes = () => {
         component={SupplierList}
         options={{ title: "Fornecedores" }}
       />
+      <Stack.Screen
+        name="FornecedorForm"
+        component={FornecedorForm}
+        options={{ headerShown: false }}
+      />
+
     </Stack.Navigator>
   );
 };
