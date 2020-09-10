@@ -6,7 +6,7 @@ export default (props) => {
   return (
     <View style={[styles.container, props.style]}>
       <Icon name={props.icon} size={20} style={styles.icon} />
-      <TextInput {...props} style={styles.input} />
+      <TextInput {...props} style={styles.input} onChangeText={props.onChange}  />
     </View>
   );
 };
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon: {
-    color: "#333",
+    color: "#000",
     marginLeft: 20,
   },
   input: {

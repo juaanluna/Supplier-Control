@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -10,40 +10,49 @@ import AuthInput from "../../components/AuthInput";
 import backgroundImage from "../../../assets/imgs/imageBackground.jpg";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "react-native";
+import { authenticate } from "../../store/auth/auth.action";
+import { useDispatch } from "react-redux";
 
 const Auth = () => {
-  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const { navigate } = useNavigation();
 
+  const dispatch = useDispatch();
+
+  const login = useCallback(() => {
+    const values = { email, senha };
+    dispatch(authenticate(values));
+  }, [dispatch, email, senha]);
+
   return (
     <>
-    <StatusBar backgroundColor="#202125" barStyle="light-content" />
-    <ImageBackground source={backgroundImage} style={styles.background}>
-      <Text style={styles.title}>SUPPLIER CONTROL</Text>
-      <View style={styles.viewEstilo}>
-        <View style={styles.inputContainer}>
-          <AuthInput
-            style={styles.input}
-            placeholder="Nome de usuário"
-            placeholderTextColor="#233245"
-          />
-          <AuthInput
-            style={styles.input}
-            placeholder="Senha"
-            placeholderTextColor="#233245"
-          />
+      <StatusBar backgroundColor="#202125" barStyle="light-content" />
+      <ImageBackground source={backgroundImage} style={styles.background}>
+        <Text style={styles.title}>SUPPLIER CONTROL</Text>
+        <View style={styles.viewEstilo}>
+          <View style={styles.inputContainer}>
+            <AuthInput
+              style={styles.input}
+              placeholder="E-mail"
+              placeholderTextColor="#233245"
+              onChange={(text) => setEmail(text)}
+            />
+            <AuthInput
+              style={styles.input}
+              placeholder="Senha"
+              placeholderTextColor="#233245"
+              onChange={(text) => setSenha(text)}
+              secureTextEntry={true}
+            />
 
-          <TouchableOpacity
-            style={styles.buttons}
-            onPress={() => navigate("Home")}
-          >
-            <Text style={styles.textButton}>Entrar</Text>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.buttons} onPress={() => login()}>
+              <Text style={styles.textButton}>Entrar</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
     </>
   );
 };

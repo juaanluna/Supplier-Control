@@ -2,7 +2,6 @@ import React from "react";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Auth from "../screens/auth/auth";
 import Home from "../screens/home/home";
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Drawer = createDrawerNavigator();
 

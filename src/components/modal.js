@@ -9,19 +9,21 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { deleteMaterial } from "../store/materials/material.action";
+import { useDispatch } from "react-redux";
 
 const ModalComponent = ({
+  id,
   isVisible,
   onCancel,
   textHeader,
   children,
   buttonTitle,
+  deleteItem
 }) => {
   const { navigate } = useNavigation();
+  const dispatch = useDispatch();
 
-  // const buttonSupplier = useCallback({
-  //FECHA MODAL E NAVEGA
-  // },[])
   return (
     <Modal
       transparent={true}
@@ -36,18 +38,24 @@ const ModalComponent = ({
       <View style={styles.children}>
         <View style={styles.header}>
           <Text style={styles.textHeader}>{textHeader}</Text>
-          <Icon name="pen" size={20} color="#fff" />
+          <TouchableOpacity>
+            <Icon
+              name="trash"
+              size={20}
+              color="#fff"
+              onPress={deleteItem}
+            />
+          </TouchableOpacity>
         </View>
-
         {children}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.button}
-          onPress={async () => navigate("SupplierList")}
+          onPress={() => navigate('SupplierList', {type:'vai pf'})}
           onCancel
         >
           <Text style={styles.buttonTitle}>{buttonTitle}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       <TouchableWithoutFeedback onPress={onCancel}>
@@ -79,12 +87,6 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     justifyContent: "center",
-  },
-  buttonTitle: {
-    margin: 20,
-    marginRight: 30,
-    color: "#B20",
-    fontSize: 20,
   },
 });
 export default ModalComponent;
